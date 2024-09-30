@@ -26,7 +26,7 @@ namespace HandleCharge.BLL
             try
             {
                 var list = new AutoHandleChargeDAL().GetPayRecordList(ConfigHelper.StartTaskCode);
-                if (list != null)
+                if (list.Count>0)
                 {
                     var listCount= list.Count;
                     int notHaveChargeCount = 0;
@@ -53,7 +53,7 @@ namespace HandleCharge.BLL
                             }
                         }
                     }
-                    LogHelper.WriteInfo("本次查询共"+ listCount + "条异常数据，其中已处理收费子表"+ ExecuteCount+ "行，包含多次支付成功记录" + RepeatPayCount + "条，未上传收费"+ notHaveChargeCount + "条");
+                    LogHelper.WriteInfo("本次查询共"+ listCount + "条异常数据，其中已处理收费子表"+ ExecuteCount+ "行，包含多次支付成功记录" + RepeatPayCount + "条，未上传收费"+ notHaveChargeCount + "条。");
                 }
 
             }
